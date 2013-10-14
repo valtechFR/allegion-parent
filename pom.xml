@@ -1,0 +1,80 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>com.valtech.cq</groupId>
+		<artifactId>parent</artifactId>
+		<version>5.6.1</version>
+	</parent>
+	
+	<groupId>com.allegion.cq</groupId>
+	<artifactId>parent</artifactId>
+	<version>1.0.0</version>
+	<packaging>pom</packaging>
+	<name>Allegion CQ5 parent</name>
+	
+	<url>http://www.allegion.corp.com/fr</url>
+	<inceptionYear>2013</inceptionYear>
+
+	<organization>
+		<name>allegion</name>
+		<url>http://www.allegion.corp.com/fr</url>
+	</organization>
+	
+	<distributionManagement>
+		<repository>
+			<id>ir_releases</id>
+			<name>IR Releases</name>
+			<url>https://nexus.valtech-agency.fr/content/repositories/ir_releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>ir_snapshots</id>
+			<name>IR Snapshots</name>
+			<url>https://nexus.valtech-agency.fr/content/repositories/ir_snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+	
+	<build>
+		<resources>
+			<!-- Default resource folder for bundle -->
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+			</resource>
+			
+			<!-- We want to include custom META-INF files to content packages (like 
+				thumbnails for example) -->
+			<resource>
+				<directory>${basedir}/META-INF</directory>
+				<targetPath>${build.vault.directory}/META-INF</targetPath>
+			</resource>
+			
+			<!-- Specific resources folders for content package (no impact when these 
+				folders are missing) -->
+			<!-- exclude .vlt control files and tests -->
+			<resource>
+				<directory>${basedir}/${jcr.root.base}</directory>
+				<targetPath>${build.vault.directory}/${jcr.root.base}</targetPath>
+				<filtering>false</filtering>
+				<excludes>
+					<exclude>**/*.scss</exclude>
+					<exclude>**/*.sass-cache</exclude>
+					<exclude>**/compass.rb</exclude>
+					<exclude>**/.sass*/</exclude>
+					<exclude>**/.vlt</exclude>
+					<exclude>**/.vltignore</exclude>
+					<exclude>**/*.iml</exclude>
+					<exclude>**/.classpath</exclude>
+					<exclude>**/.project</exclude>
+					<exclude>**/.DS_Store</exclude>
+					<exclude>.svn/**</exclude>
+					<exclude>.gitignore</exclude>
+                 			<exclude>.git/**</exclude>
+					<exclude>**/target/**</exclude>
+					<exclude>**/var/**</exclude>
+				</excludes>
+			</resource>
+		</resources>
+	</build>
+</project>
